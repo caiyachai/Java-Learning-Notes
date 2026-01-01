@@ -11,6 +11,9 @@
 </html>
 
 
+
+
+
 ###HTML标题排版
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +33,9 @@
     target属性：超链接打开方式（两种：   1-blank:新窗口打开 2-self:当前窗口打开） -->
 </body>
 </html>
+
+
+
 
 
 ###HTML-CSS标题样式
@@ -73,7 +79,62 @@
  
 </body>
 </html>
-方式三    另一个文件中内容
-span{
+方式三  另一个文件内容
+ span{
             color: gray;
         }
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【新思想引领新征程】推进长江十年禁渔 谱写长江大保护新篇章</title>
+
+       <style>
+        /* 元素选择器 */
+        /* span{
+            color: #b2b2b2;
+        } */
+
+        /* 类选择器 */
+        /* .cls{
+            color: #b2b200;
+        } */
+
+        /* id选择器 */
+        #time{
+            color: #b2b2b2;
+        }
+
+        /* id选择器优先级最高>类选择器>元素选择器 */
+
+        a{
+            /* 去除超链接下方的下划线 */
+            text-decoration: none;
+           
+        }
+     </style>
+
+
+</head>
+<body>
+   
+    <h1>【新思想引领新征程】推进长江十年禁渔 谱写长江大保护新篇章</h1>
+
+ <a href="https://www.cctv.com/" target="_blank">央视网</a>
+<!-- 元素选择器 -->
+  <!-- <span >2024-05-15</span> -->
+
+  <!-- 类选择器 -->
+  <!-- <span class="cls" >2024-05-15</span> -->
+
+  <!-- id选择器 -->
+ <span class="cls" id="time">2024-05-15</span>
+
+
+</body>
+</html>
