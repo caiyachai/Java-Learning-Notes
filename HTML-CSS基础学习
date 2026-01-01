@@ -374,3 +374,38 @@
      
 </body>
 </html>
+
+
+
+
+
+#####盒子模型#####
+
+<!DOCTYPE html>
+<html lang="en"> 
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>盒子模型</title>
+       <style>
+       #div1{
+           width: 400px;  /* 宽度 : 默认是内容展示区域的宽度 */
+           height: 300px;   /* 高度 : 默认是内容展示区域的高度 */
+           box-sizing: border-box;
+           background-color: #00ff77;
+           padding: 30px;
+           /* 边框 */
+           border: 20px solid #00eaff;
+           margin: 30px  auto ;   /* 外边距  30像素 ###  auto 表示居中显示*/
+           
+          
+       }
+       </style>
+   </head>
+   <body>
+      <div id="div1">
+         A A A A A  A A A A  A A A 
+       </div>
+      
+   </body>
+</html>
