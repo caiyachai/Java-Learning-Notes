@@ -42,7 +42,18 @@
 <!-- 方式二：内部样式 -->
      <!-- <style>
         span{
-            color: gray;
+/* 英语颜色 */
+            /* color: gray; */
+
+            /* RGB表示法 */
+            /* color: rgb(255,0,0); */
+
+            /* RGBA表示法 */
+            /* color: rgba(255,0,0,0.5); */
+
+            /* 十六进制表示法 */
+            /* color: #ff0000; */
+            color: #f00;
         }
      </style> -->
 
