@@ -22,6 +22,9 @@ public class s3 {
     }
 
 
+
+
+
 ###学习移除数组元素
  //移除数值元素
     public static void remove(int [] num,int ver) {
