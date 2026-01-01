@@ -268,7 +268,7 @@
 
 
 
-#####正文样式#####
+#####正文样式  页面布局#####
 
 <!DOCTYPE html>
 <html lang="en">
@@ -292,6 +292,15 @@
              /* 设置首行缩进 */
              text-indent: 2em;    /* 首行缩进两个字符 */
         }
+
+ /*    ######  作用 居中对齐  版面占比50% 左右自动对齐 */
+        body {
+          margin: 0;
+          padding: 20px;
+          width: 50%;
+          margin-left: auto;
+          margin-right: auto; 
+         }
      </style>
 </head>
 <body>
