@@ -1,0 +1,11 @@
+###HTML基本骨架标签
+<html>
+                  <head>	
+					<title>HTML快速入门</title>
+		</head>
+		<body>
+					<h1>Hello HTML</h1>
+					<image src="image/1.jpg">
+		</body>
+
+</html>
