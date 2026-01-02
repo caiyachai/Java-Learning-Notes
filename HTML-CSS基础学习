@@ -742,3 +742,241 @@
    
    </body>
 </html>
+
+
+
+
+
+######表格数据展示区域######
+
+<!DOCTYPE html>
+<html lang="en"> 
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格数据展示区域</title>
+       <style>
+         body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 20px;
+         }
+         
+         .search-form {
+           display: flex; /* 水平排列 */
+           align-items: center; /* 垂直居中对齐 */
+           gap: 15px; /* 元素之间的间距 */
+           padding: 15px;
+           background-color: #f5f5f5; /* 背景色 */
+           border-radius: 5px; /* 圆角 */
+           margin: 20px 0;
+         }
+         
+         .form-item {
+           display: flex;
+           align-items: center; /* 标签和输入框水平对齐 */
+         }
+         
+         .form-item label {
+           margin-right: 5px; /* 标签与输入框的间距 */
+           font-weight: bold;
+         }
+         
+         .form-item input,
+         .form-item select {
+           padding: 8px;
+           border: 1px solid #ccc;
+           border-radius: 3px;
+           width: 100px; /* 统一宽度 */
+         }
+         
+         .button-group {
+           display: flex;
+           gap: 10px; /* 按钮之间的间距 */
+           margin-left: 10px; /* 与表单项的间距 */
+         }
+         
+         .btn {
+           padding: 8px 15px;
+           border: none;
+           border-radius: 3px;
+           cursor: pointer;
+         }
+         
+         .btn-query {
+           background-color: #007bff;
+           color: white;
+         }
+         
+         .btn-clear {
+           background-color: #6c757d;
+           color: white;
+         }
+         
+         .btn:hover {
+           opacity: 0.9;
+         }
+         
+         /* 表格样式 */
+         .table-container {
+           margin: 20px 0;
+         }
+         
+         table {
+           width: 100%;
+           border-collapse: collapse;
+           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+           background-color: white;
+           border-radius: 5px;
+           overflow: hidden;
+         }
+         
+         th, td {
+           padding: 12px 15px;
+           text-align: left;
+           border-bottom: 1px solid #ddd;
+         }
+         
+         th {
+           background-color: #f8f9fa;
+           font-weight: bold;
+           color: #333;
+         }
+         
+         tr:hover {
+           background-color: #f5f5f5;
+         }
+         
+         .avatar {
+           width: 40px;
+           height: 40px;
+           border-radius: 50%;
+           object-fit: cover;
+         }
+         
+         .action-buttons {
+           display: flex;
+           gap: 5px;
+         }
+         
+         .btn-edit, .btn-delete {
+           padding: 5px 10px;
+           border: none;
+           border-radius: 3px;
+           cursor: pointer;
+           font-size: 12px;
+         }
+         
+         .btn-edit {
+           background-color: #28a745;
+           color: white;
+         }
+         
+         .btn-delete {
+           background-color: #dc3545;
+           color: white;
+         }
+       </style>
+   </head>
+   <body>
+     <form class="search-form"  action="/search" method="get">
+       <!-- 姓名输入框 -->
+       <div class="form-item">
+         <label for="name">姓名:</label>
+         <input type="text" id="name" name="name">
+       </div>
+       
+       <!-- 性别下拉选择 -->
+       <div class="form-item">
+         <label for="gender">性别:</label>
+         <select id="gender" name="gender">
+           <option value="">请选择</option>
+           <option value="男">男</option>
+           <option value="女">女</option>
+         </select>
+       </div>
+       
+       <!-- 职位下拉选择 -->
+       <div class="form-item">
+         <label for="position">职位:</label>
+         <select id="position" name="position">
+           <option value="">请选择</option>
+           <option value="员工">员工</option>
+           <option value="经理">经理</option>
+           <option value="老板">老板</option>
+         </select>
+       </div>
+       
+       <!-- 按钮组 -->
+       <div class="button-group">
+         <button type="submit" class="btn btn-query">查询</button>
+         <button type="reset" class="btn btn-clear">清空</button>
+       </div>
+     </form>
+     
+     <!-- 表格展示区 -->
+     <div class="table-container">
+       <table>
+        <!-- thead 定义表头 -->
+         <thead>
+           <!-- tr 定义行   一个tr是一行 -->
+           <tr>
+            <!-- th定义表头单元格 -->
+             <th>姓名</th>
+             <th>性别</th>
+             <th>头像</th>
+             <th>职位</th>
+             <th>入职日期</th>
+             <th>最后操作时间</th>
+             <th>操作</th>
+           </tr>
+         </thead>  
+         <tbody>
+           <tr>
+            <!-- td定义普通单元格 -->
+             <td>令狐冲</td>
+             <td>男</td>
+             <td><img src="https://via.placeholder.com/40x40/007bff/white?text=令" alt="令狐冲" class="avatar"></td>
+             <td>讲师</td>
+             <td>2020-03-15</td>
+             <td>2024-12-20</td>
+             <td>
+               <div class="action-buttons">
+                 <button class="btn-edit">编辑</button>
+                 <button class="btn-delete">删除</button>
+               </div>
+             </td>
+           </tr>
+           <tr>
+             <td>任盈盈</td>
+             <td>女</td>
+             <td><img src="https://via.placeholder.com/40x40/ff6b6b/white?text=盈" alt="任盈盈" class="avatar"></td>
+             <td>班主任</td>
+             <td>2019-07-10</td>
+             <td>2024-12-18</td>
+             <td>
+               <div class="action-buttons">
+                 <button class="btn-edit">编辑</button>
+                 <button class="btn-delete">删除</button>
+               </div>
+             </td>
+           </tr>
+           <tr>
+             <td>岳不群</td>
+             <td>男</td>
+             <td><img src="https://via.placeholder.com/40x40/4ecdc4/white?text=岳" alt="岳不群" class="avatar"></td>
+             <td>教研主管</td>
+             <td>2018-05-22</td>
+             <td>2024-12-15</td>
+             <td>
+               <div class="action-buttons">
+                 <button class="btn-edit">编辑</button>
+                 <button class="btn-delete">删除</button>
+               </div>
+             </td>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </body>
+</html>
