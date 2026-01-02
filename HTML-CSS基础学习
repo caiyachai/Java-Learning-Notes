@@ -629,3 +629,116 @@
       
    </body>
 </html>
+
+
+
+
+
+######搜索表单区域#####
+<!DOCTYPE html>
+<html lang="en"> 
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索表单区域</title>
+       <style>
+         body {
+           font-family: Arial, sans-serif;
+           margin: 0;
+           padding: 20px;
+         }
+         
+         .search-form {
+           display: flex; /* 水平排列 */
+           align-items: center; /* 垂直居中对齐 */
+           gap: 15px; /* 元素之间的间距 */
+           padding: 15px;
+           background-color: #f5f5f5; /* 背景色 */
+           border-radius: 5px; /* 圆角 */
+           margin: 20px 0;
+         }
+         
+         .form-item {
+           display: flex;
+           align-items: center; /* 标签和输入框水平对齐 */
+         }
+         
+         .form-item label {
+           margin-right: 5px; /* 标签与输入框的间距 */
+           font-weight: bold;
+         }
+         
+         .form-item input,
+         .form-item select {
+           padding: 8px;
+           border: 1px solid #ccc;
+           border-radius: 3px;
+           width: 300px; /* 统一宽度 */
+         }
+         
+         .button-group {
+           display: flex;
+           gap: 50px; /* 按钮之间的间距 */
+           margin-left: 50px; /* 与表单项的间距 */
+         }
+         
+         .btn {
+           padding: 8px 15px;
+           border: none;
+           border-radius: 3px;
+           cursor: pointer;
+         }
+         
+         .btn-query {
+           background-color: #007bff;
+           color: white;
+         }
+         
+         .btn-clear {
+           background-color: #6c757d;
+           color: white;
+         }
+         
+         .btn:hover {
+           opacity: 0.9;
+         }
+       </style>
+   </head>
+   <body>
+     <form class="search-form"  action="/search" method="get">
+       <!-- 姓名输入框 -->
+       <div class="form-item">
+         <label for="name">姓名:</label>
+         <input type="text" id="name" name="name">
+       </div>
+       
+       <!-- 性别下拉选择 -->
+       <div class="form-item">
+         <label for="gender">性别:</label>
+         <select id="gender" name="gender">
+           <option value="">请选择</option>
+           <option value="男">男</option>
+           <option value="女">女</option>
+         </select>
+       </div>
+       
+       <!-- 职位下拉选择 -->
+       <div class="form-item">
+         <label for="position">职位:</label>
+         <select id="position" name="position">
+           <option value="">请选择</option>
+           <option value="员工">员工</option>
+           <option value="经理">经理</option>
+           <option value="老板">老板</option>
+         </select>
+       </div>
+       
+       <!-- 按钮组 -->
+       <div class="button-group">
+         <button type="submit" class="btn btn-query">查询</button>
+         <button type="reset" class="btn btn-clear">清空</button>
+       </div>
+     </form>
+   
+   </body>
+</html>
