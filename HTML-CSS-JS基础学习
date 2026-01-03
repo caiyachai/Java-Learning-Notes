@@ -1079,3 +1079,47 @@ alert('Hello JScript');
   </script>
 </body>
 </html>
+
+
+
+
+
+#####   JS-数据类型  ######
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-数据类型</title>
+</head>
+<body>
+  <script>
+    //1. 数据类型
+    // alert(typeof 10);    //number  只要是数字类型都是number
+    // alert(typeof 1.5);   //number
+    
+    // alert(typeof true);     //boolean
+    // alert(typeof false);    //boolean
+
+    // alert(typeof "Hello");   //string
+    // alert(typeof 'JS');      //string
+    // alert(typeof `JavaScript`);  //string
+
+    // alert(typeof null);  //object
+
+    // let a ;
+    // alert(typeof a);      //undefined:没有声明的值，初始默认为undefined
+    
+
+    //2.模板字符串--简化字符串拼接    ``用反引号定义模板字符串
+    //内容拼接变量时，使用${}包装变量
+
+    let name = "小王";
+    let age = 18;
+
+    console.log('我是' + name + '  今年' + age+'岁');
+    console.log(`我是${name}  今年${age}岁`);     //两者等价
+  </script>
+</body>
+</html>
