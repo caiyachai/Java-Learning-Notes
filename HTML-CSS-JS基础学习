@@ -1021,3 +1021,31 @@
      </div>
    </body>
 </html>
+
+
+
+
+
+######  JS引入方式######
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-引入方式</title>
+</head>
+<body>
+
+  <!-- <script >
+    //1.内部脚本
+    // alert('Hello JS');
+  </script> -->
+
+  <!-- 外部脚本 -->
+  <script src="js/demo.js"></script>
+</body>
+</html>
+
+另一个文件内容
+alert('Hello JScript');
