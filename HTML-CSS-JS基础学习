@@ -1049,3 +1049,33 @@
 
 另一个文件内容
 alert('Hello JScript');
+
+
+
+
+
+#####  JS-基础语法#####
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-基础语法</title>
+</head>
+<body>
+  <script>
+    //1.声明变量
+    // let a = 10;
+    // a = "Hello JS"
+    // a = true;
+    // alert(a);   // 弹出框
+    
+    //2.声明常量
+    const b = 20;
+    console.log(b);   // 输出在控制台
+
+    // document.write(b);   // 输出在页面  body区域   （不常用）
+  </script>
+</body>
+</html>
