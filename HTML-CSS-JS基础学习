@@ -1209,7 +1209,16 @@ alert('Hello JScript');
     //2.访问对象属性/方法
     alert(person.name);
     person.sing();
-   
+    //3.JSON-JS对象标记法
+     let person = {
+      name: '张三',
+       age: 18,
+       sex: '男',
+     }
+    //  alert(JSON.stringify(person));  //JS对象-->JSON字符串
+
+    let person2 = '{"name":"李四","age":18,"sex":"男"}'
+    alert(JSON.parse(person2).name);  //JSON字符串-->JS对象
   </script>
 </body>
 </html>
