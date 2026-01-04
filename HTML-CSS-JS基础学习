@@ -1169,3 +1169,47 @@ alert('Hello JScript');
   </script>
 </body>
 </html>
+
+
+
+
+
+#####   JS-自定义对象######
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-自定义对象</title>
+</head>
+<body>
+  <script>
+    //1.自定义对象
+    let person = {
+      name: '张三',
+      age: 18,
+      sex: '男',
+
+    //   sing: function()
+    //   {
+    //     alert(this.name+'唱着歌');
+
+       sing()
+       {
+        alert(this.name+'唱着歌');
+       }
+
+      //注意：在箭头函数中，this指向的是当前对象的父级    【不推荐箭头函数】
+    //    sing: ()=>   
+    //   {
+    //      alert(this.name+'唱着歌');
+    // }
+  }
+    //2.访问对象属性/方法
+    alert(person.name);
+    person.sing();
+   
+  </script>
+</body>
+</html>
