@@ -1,0 +1,380 @@
+#####  maven初程序  #####
+
+ackage com.xxcyc;
+
+import org.junit.jupiter.api.Test;
+
+public class HelloWorld {
+    static void main(String[] args) {
+        System.out.println("Hello Maven");
+
+###pom.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xxcyc</groupId>
+    <artifactId>maven-project01</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+   <!--配置依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>7.0.1</version>
+
+            <!--    排除依赖-->
+            <exclusions>
+                <exclusion>
+                    <groupId>io.micrometer</groupId>
+                    <artifactId>micrometer-observation</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+    <!--      junit依赖-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.9.1</version>
+     <!--        设置依赖范围-->
+            <scope>test</scope>
+
+        </dependency>
+        
+        <!-- Mockito依赖 -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>5.7.0</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+</project>
+
+
+
+
+#####  单元测试1 #####
+package com.xxcyc;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+public class UserService {
+
+    /**
+     * 给定一个身份证号, 计算出该用户的年龄
+     * @param idCard 身份证号
+     */
+    public Integer getAge(String idCard){
+        if (idCard == null || idCard.length() != 18) {
+            throw new IllegalArgumentException("无效的身份证号码");
+        }
+        String birthday = idCard.substring(6, 14);
+        LocalDate parse = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyyMMdd"));
+        return Period.between(parse, LocalDate.now()).getYears();
+    }
+
+    /**
+     * 给定一个身份证号, 计算出该用户的性别
+     * @param idCard 身份证号
+     */
+    public String getGender(String idCard){
+        if (idCard == null || idCard.length() != 18) {
+            throw new IllegalArgumentException("无效的身份证号码");
+        }
+        return Integer.parseInt(idCard.substring(16,17)) % 2 == 1 ? "男" : "女";
+    }
+
+}
+
+
+
+
+#####  单元测试2  #####
+package com.xxcyc;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class UserServiceTest {
+//    @BeforeAll
+//    public static void beforeAll(){ // 所有测试类执行之前只执行一次
+//        System.out.println("before All");
+//    }
+//
+//    @AfterAll
+//    public static void afterAll(){  // 所有测试类执行之后只执行一次
+//        System.out.println("after All");
+//    }
+//
+//    @BeforeEach
+//    public void beforeEach(){  // 测试类中的每个测试方法执行之前执行
+//        System.out.println("before Each");
+//    }
+//
+//    @AfterEach
+//    public void afterEach(){  // 测试类中的每个测试方法执行之后执行
+//        System.out.println("after Each");
+//    }
+//
+//
+//
+//
+//    @Test
+//    public void testGetAge(){
+//        UserService userService = new UserService();
+//        Integer age = userService.getAge("420222200302283776");
+//        System.out.println(age);
+//    }
+//    @Test
+//    public void testGetGender(){
+//        UserService userService = new UserService();
+//        String gender = userService.getGender("420222200302283776");
+//        System.out.println(gender);
+//    }
+//     //    断言
+//    @Test
+//    public void testGenderWithAssert(){
+//        UserService userService = new UserService();
+//        String gender = userService.getGender("420222200302283776");
+//        //断言
+//        Assertions.assertEquals("男", gender);
+//    }
+//    @Test
+//    public void testGenderWithAssert2(){
+//        UserService userService = new UserService();
+//
+//        //断言
+//        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+//            userService.getGender(null);
+//        });
+//    }
+//    @DisplayName("测试用户性别")
+//    @ParameterizedTest
+//    @ValueSource(strings = {"420222200302283776", "420222200302283777"})
+//    public void testGetGender2(String idCard){
+//        UserService userService = new UserService();
+//        String gender = userService.getGender(idCard);
+//        //断言
+//        Assertions.assertEquals("男", gender);
+//    }
+
+    //测试类
+    @Nested
+    @DisplayName("用户信息测试类")
+    class UserService2Test {
+        private UserService userService;
+        @BeforeEach
+        public void setUp(){
+            userService = new UserService();
+        }
+
+        //测试获取性别 -- null
+        @Test
+        @DisplayName("测试获取性别 -- null")
+        public void testGetGender1(){
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                userService.getGender(null);
+            });
+        }
+        //测试获取性别 -- ""
+        @Test
+        @DisplayName("测试获取性别 -- 空串")
+        public void testGetGender2(){
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                userService.getGender("");
+            });
+        }
+        //测试获取性别 -- 身份证长度 != 18
+        @Test
+        @DisplayName("测试获取性别 -- 身份证长度 != 18")
+        public void testGetGender3(){
+            Assertions.assertThrows(IllegalArgumentException.class, () -> {
+                userService.getGender("4202222003022837");
+            });
+        }
+        //测试获取性别 --正常男性
+        @Test
+        @DisplayName("测试获取性别 --正常男性")
+        public void testGetGender4(){
+            String gender = userService.getGender("420222200302283776");
+            Assertions.assertEquals("男", gender);
+        }
+        //测试获取性别 --正常女性
+        @Test
+        @DisplayName("测试获取性别 --正常女性")
+        public void testGetGender5(){
+            String gender = userService.getGender("420222200302283767");
+            Assertions.assertEquals("女", gender);
+        }
+    }
+
+
+        @Nested
+        @DisplayName("年龄获取测试类")
+        class GetAgeTest {
+            private UserService userService;
+
+            @BeforeEach
+            public void setUp() {
+                userService = new UserService();
+            }
+
+            // 测试获取年龄 -- null输入
+            @Test
+            @DisplayName("测试获取年龄 -- null输入")
+            public void testGetAgeWithNull() {
+                IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+                    userService.getAge(null);
+                });
+                assertEquals("无效的身份证号码", exception.getMessage());
+            }
+
+            // 测试获取年龄 -- 空字符串
+            @Test
+            @DisplayName("测试获取年龄 -- 空字符串")
+            public void testGetAgeWithEmptyString() {
+                IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+                    userService.getAge("");
+                });
+                assertEquals("无效的身份证号码", exception.getMessage());
+            }
+
+            // 测试获取年龄 -- 身份证长度小于18
+            @Test
+            @DisplayName("测试获取年龄 -- 身份证长度小于18")
+            public void testGetAgeWithShortIdCard() {
+                IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+                    userService.getAge("123456789");
+                });
+                assertEquals("无效的身份证号码", exception.getMessage());
+            }
+
+            // 测试获取年龄 -- 身份证长度大于18
+            @Test
+            @DisplayName("测试获取年龄 -- 身份证长度大于18")
+            public void testGetAgeWithLongIdCard() {
+                IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+                    userService.getAge("1234567890123456789");
+                });
+                assertEquals("无效的身份证号码", exception.getMessage());
+            }
+
+            // 测试获取年龄 -- 正常身份证号计算年龄
+            @Test
+            @DisplayName("测试获取年龄 -- 正常身份证号")
+            public void testGetAgeWithValidIdCard() {
+                try (MockedStatic<LocalDate> mockedLocalDate = Mockito.mockStatic(LocalDate.class)) {
+                    // 设置固定的当前日期为2023年12月1日
+                    LocalDate fixedNow = LocalDate.of(2023, 12, 1);
+                    mockedLocalDate.when(LocalDate::now).thenReturn(fixedNow);
+
+                    // 身份证号为1990年1月1日出生
+                    String idCard = "110101199001011234";
+                    Integer age = userService.getAge(idCard);
+
+                    // 计算预期年龄：2023 - 1990 = 33
+                    assertEquals(33, age);
+                }
+            }
+
+            // 测试获取年龄 -- 不同年龄段的身份证号
+            @ParameterizedTest
+            @ValueSource(strings = {
+                    "110101198005151234", // 1980年出生
+                    "110101199510201234", // 1995年出生
+                    "110101200001011234"  // 2000年出生
+            })
+            @DisplayName("测试获取年龄 -- 不同年龄段")
+            public void testGetAgeWithDifferentAges(String idCard) {
+                try (MockedStatic<LocalDate> mockedLocalDate = Mockito.mockStatic(LocalDate.class)) {
+                    // 设置固定的当前日期为2023年12月1日
+                    LocalDate fixedNow = LocalDate.of(2023, 12, 1);
+                    mockedLocalDate.when(LocalDate::now).thenReturn(fixedNow);
+
+                    Integer age = userService.getAge(idCard);
+
+                    // 验证返回的年龄是正整数
+                    assertTrue(age > 0, "年龄应该大于0");
+                }
+            }
+
+            // 测试获取年龄 -- 当年出生的身份证号
+            @Test
+            @DisplayName("测试获取年龄 -- 当年出生")
+            public void testGetAgeWithCurrentYearBirth() {
+                try (MockedStatic<LocalDate> mockedLocalDate = Mockito.mockStatic(LocalDate.class)) {
+                    // 设置当前日期为2023年12月1日
+                    LocalDate fixedNow = LocalDate.of(2023, 12, 1);
+                    mockedLocalDate.when(LocalDate::now).thenReturn(fixedNow);
+
+                    // 2023年出生的身份证号
+                    String idCard = "110101202301011234";
+                    Integer age = userService.getAge(idCard);
+
+                    // 2023年出生，当前是2023年，年龄应该是0
+                    assertEquals(0, age);
+                }
+            }
+
+            // 测试获取年龄 -- 未来日期的身份证号（理论上不应该存在）
+            @Test
+            @DisplayName("测试获取年龄 -- 未来出生日期")
+            public void testGetAgeWithFutureBirthDate() {
+                try (MockedStatic<LocalDate> mockedLocalDate = Mockito.mockStatic(LocalDate.class)) {
+                    // 设置当前日期为2023年1月1日
+                    LocalDate fixedNow = LocalDate.of(2023, 1, 1);
+                    mockedLocalDate.when(LocalDate::now).thenReturn(fixedNow);
+
+                    // 2024年出生的身份证号，应该返回负数年龄
+                    String idCard = "110101202401011234";
+                    Integer age = userService.getAge(idCard);
+
+                    assertTrue(age < 0, "未来出生日期应该返回负数年龄");
+                }
+            }
+
+            // 测试获取年龄 -- 日期格式错误的身份证号
+            @Test
+            @DisplayName("测试获取年龄 -- 日期格式错误")
+            public void testGetAgeWithInvalidDateFormat() {
+                try (MockedStatic<LocalDate> mockedLocalDate = Mockito.mockStatic(LocalDate.class)) {
+                    LocalDate fixedNow = LocalDate.of(2023, 12, 1);
+                    mockedLocalDate.when(LocalDate::now).thenReturn(fixedNow);
+
+                    // 身份证号中出生日期部分格式错误（例如月份为13）
+                    String idCard = "110101202013011234"; // 13月不存在
+
+                    assertThrows(Exception.class, () -> {
+                        userService.getAge(idCard);
+                    });
+                }
+            }
+        }
+    }
