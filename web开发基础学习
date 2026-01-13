@@ -1237,3 +1237,74 @@ public class User {
     </build>
 
 </project>
+
+
+
+
+
+#####  Mybatis——入门程序 #####
+package com.itxxcyc.mapper;
+
+import com.itxxcyc.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
+
+@Mapper  //应用程序在运行时，会自动为该接口生成一个实现类对象（代理对象），并且会自动将该实现类对象注入到IOC容器中 -- bean
+public interface UserMapper {
+    // 查询所有用户信息
+    @Select("select id, username, password, name, age from user")
+    public List<User> findAll();
+
+    
+}
+
+package com.itxxcyc;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringbootMybaitsQuickstartApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootMybaitsQuickstartApplication.class, args);
+    }
+
+}
+
+spring.application.name=springboot-mybaits-quickstart
+
+#配置数据库的连接信息
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.url=jdbc:mysql://localhost:3306/web01
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.username=root
+spring.datasource.password=1234
+
+#配置mybatis的日志输出
+mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
+
+package com.itxxcyc;
+
+import com.itxxcyc.mapper.UserMapper;
+import com.itxxcyc.pojo.User;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+
+@SpringBootTest   //SpringBoot单元测试的注解 —— 当前测试类中的测试方法运行时会自动启动SpringBoot应用 ——IOC容器
+class SpringbootMybaitsQuickstartApplicationTests {
+@Autowired
+ private UserMapper userMapper;
+
+@Test
+public void testFindAll(){
+   List<User> userList = userMapper.findAll();
+  userList.forEach(System.out::println);
+}
+
+}
